@@ -8,17 +8,17 @@ create table if not exists Artist(
 	Artist_Name varchar(40) not null
 );
 
+create table if not exists Albums(
+	AlbumID serial primary key,
+	Album_name varchar(80),
+	Year integer 
+);
+
 create table if not exists Tracks(
 	TrackID serial primary key,
 	Track_name varchar(80),
-	AlbumID serial,
+	AlbumID integer not null references AlbumID(Albums),
 	Time integer 
-);
-
-create table if not exists Albums(
-	AlbumID serial primary key references AlbumID(Tracks),
-	Album_name varchar(80),
-	Year integer 
 );
 
 create table if not exists Collection(
@@ -29,17 +29,17 @@ create table if not exists Collection(
 
 create table if not exists Artist_in_Genre(
     ID serial primary key,
-    ArtistID serial references ArtistID(Artist),
-    GenreID serial references GenreID(Genre)
+    ArtistID integer references ArtistID(Artist),
+    GenreID integer references GenreID(Genre)
 );
 
 create table if not exists Artist_in_Album(
     ID serial primary key,
-    ArtistID serial references ArtistID(Artist),
-    AlbumID serial references AlbumID(Albums)
+    ArtistID integer references ArtistID(Artist),
+    AlbumID integer references AlbumID(Albums)
 );
     
 create table if not exists Tracks_in_Collection(
-    TrackID serial references TrackID(Tracks),
-    CollectionID serial references CollectionID(Collection)
+    TrackID integer references TrackID(Tracks),
+    CollectionID integer references CollectionID(Collection)
 );
