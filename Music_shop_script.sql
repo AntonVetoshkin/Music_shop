@@ -3,9 +3,9 @@ create table if not exists Genre(
 	Genre_name varchar(40)
 );
 
-create table if not exists Artist(
+create table if not exists Artists(
 	ArtistID serial primary key,
-	Artist_Name varchar(40) not null
+	Artist_name varchar(40) not null
 );
 
 create table if not exists Albums(
@@ -21,7 +21,7 @@ create table if not exists Tracks(
 	Time integer 
 );
 
-create table if not exists Collection(
+create table if not exists Collections(
 	CollectionID serial primary key,
 	Collection_name varchar(60),
 	Year integer
